@@ -1,0 +1,105 @@
+.Card {
+  max-width: 150px;
+  min-width: 150px;
+  height: 220px;
+  margin: 0 5px;
+  border: 5px black solid;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.CardTopInfoIcons {
+  width: 50px;
+  height: 20px;
+  border-radius: 30%;
+  position: absolute;
+  top: -13px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardTopIcon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #511A0C;
+  margin: 0 2px;
+}
+
+.CardMainImage {
+  width: 100%;
+  height: 110px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #C4D4DB;
+}
+
+.CardMiddleBar {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.CardCostIcons {
+  width: 30px;
+  height: 100%;
+  background: #FFF;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+
+  &:after {
+    content: "";
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #FFF;
+    position: absolute;
+    top: 0;
+    right: -10px;
+  }
+}
+
+.CardName {
+  height: 100%;
+  padding: 0 10px;
+  flex: 1;
+  background: #C75748;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+}
+
+.CardInfoText {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1;
+  padding: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #511A0C;
+  color: #fff;
+  font-size: 12px;
+}
+
+@function fix-card-alignment() {
+
+}
+
+@for $max from 1 through 10 {
+
+}

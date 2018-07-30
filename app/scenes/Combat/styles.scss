@@ -1,0 +1,19 @@
+.CombatScene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.MainScreen {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
