@@ -9,14 +9,7 @@ export default function Action(props) {
     Special marks on an action
   */
   this.keyWords = props.keyWords ? props.keyWords : []; // Array, example key words: Melee, Ranged, Legs, RightHand, etc.
-  this.type = { Attack: false, Defence: false, Utility: false }; // String or array of strings (possible: Attack, Defence, Utility)
-  if(props.type.constructor === Array) {
-    props.type.map(type => {
-      this.type[type] = true;
-    })
-  } else {
-    this.type[props.type] = true;
-  }
+  this.type = props.type; // String (possible: Attack, Defence, Utility)
 
   /*
     Special marks

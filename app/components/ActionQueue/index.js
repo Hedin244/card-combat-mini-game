@@ -1,6 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './styles.scss';
-import ActionSlot from "../ActionSlot";
+import actionStyles from '../Action/styles.scss';
+import Action from "../Action";
 
 type Props = {
   actionQueue: Array
@@ -9,10 +11,16 @@ type Props = {
 export default class ActionQueue extends React.Component<Props> {
 
   render() {
+    const stockAction = {
+      keyWords: [],
+    };
     return (
       <div className={ styles.ActionQueue }>
-        { this.props.actionQueue.map(action => {
-          return <ActionSlot actionSlot={ action.toObject() } key={ action.get('id') } />;
+        { this.props.actionQueue.map(actionSlot => {
+          const actionClass = classNames({
+            [actionStyles.Monster]: actionSlot.get('owner') === 'monster',
+          });
+          return <Action action={ actionSlot.get('empty') ? stockAction : actionSlot.get('action') } className={ actionClass } key={ actionSlot.get('id') } />;
         })}
       </div>
     );

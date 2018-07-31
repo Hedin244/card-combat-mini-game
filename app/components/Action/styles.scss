@@ -1,0 +1,93 @@
+.Action {
+  opacity: 0.9;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background-color: #F8ECC2;
+  margin: 34px 0;
+  border-left: solid 5px #2a2a2a;
+  border-right: solid 5px #2a2a2a;
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 85px;
+    height: 85px;
+    transform: scaleY(0.6) rotate(-45deg);
+    background-color: inherit;
+    left: 14px;
+  }
+
+  &:before {
+    top: -47px;
+    border-top: solid 7px #2a2a2a;
+    border-right: solid 7px #2a2a2a;
+  }
+  &:after {
+    bottom: -45px;
+    border-bottom: solid 7px #2a2a2a;
+    border-left: solid 7px #2a2a2a;
+  }
+
+  &:hover {
+    transform: scale(1.7);
+
+    .ExpandedInfo {
+      opacity: 0.9;
+    }
+  }
+
+  .Name {
+    z-index: 2;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin: 5px auto;
+    max-width: 90%;
+    font-size: 12px;
+  }
+
+  .Description {
+    z-index: 2;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin: 5px auto;
+    max-width: 90%;
+    font-size: 12px;
+  }
+
+  .ExpandedInfo {
+    color: black;
+    position: absolute;
+    left: -70%;
+    top: 0;
+    width: 60px;
+    border: solid 5px #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.1s;
+    background: #F8ECC2;
+    opacity: 0;
+
+    span {
+      font-size: 12px;
+    }
+  }
+}
+
+.Monster {
+  background-color: #FFACC2;
+  margin: 180px -30px 0;
+
+  .ExpandedInfo {
+    background: #FFACC2;
+  }
+}
