@@ -1,0 +1,28 @@
+.Rain {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.Drop {
+  background: linear-gradient(#0D343A, rgba(255,255,255,0.6));
+  width: 1px;
+  height: 89px;
+  position: absolute;
+  bottom: 200px;
+  animation: raining 1s linear infinite;
+  animation-fill-mode: backwards;
+}
+
+@keyframes raining {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 100%;
+    opacity: 1;
+  }
+}

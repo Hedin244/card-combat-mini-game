@@ -1,6 +1,38 @@
 .HomeScene {
-  position: absolute;
-  top: 30%;
-  left: 10px;
-  text-align: center;
+
+}
+
+.Menu {
+  margin-top: 500px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .MenuButton {
+    text-shadow: 2px 2px 4px #081f2e;
+    text-transform: uppercase;
+    position: relative;
+    padding: 10px 20px;
+    z-index: 2;
+
+    &:before {
+      position: absolute;
+      top: 13px;
+      bottom: 13px;
+      left: -40px;
+      right: -40px;
+      content: "";
+      background: radial-gradient(yellow 15%, transparent 60%);
+      opacity: 0;
+      z-index: -1;
+      transition: 500ms all;
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0.5;
+      }
+    }
+  }
 }
