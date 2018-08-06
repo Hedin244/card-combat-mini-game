@@ -18,8 +18,6 @@ export default class Action extends React.PureComponent {
       [className]: className,
     });
 
-    console.log(actionClass)
-
     return (
       <div className={ actionClass }>
         <div className={ styles.Name }>{ name }</div>

@@ -1,31 +1,25 @@
 import {
   END_PHASE,
   END_TURN,
-  GET_NEW_ACTION_QUEUE,
-  ADD_ACTION_TO_QUEUE,
-  ACTIVATE_ACTION_QUEUE,
+  GET_PHASES,
+  PUT_ACTION_IN_PHASE,
 } from './constants';
 
 // Manipulate action queue
 
-export function getNewActionQueue(data) {
+export function getPhases(data) {
   return {
-    type: GET_NEW_ACTION_QUEUE,
+    type: GET_PHASES,
     hunterActions: data.hunterActions,
     monsterActions: data.monsterActions,
   };
 }
 
-export function addActionToQueue(data) {
+export function putActionInPhase(data) {
   return {
-    type: ADD_ACTION_TO_QUEUE,
+    type: PUT_ACTION_IN_PHASE,
     action: data.action,
-  };
-}
-
-export function activateActionQueue() {
-  return {
-    type: ACTIVATE_ACTION_QUEUE,
+    owner: data.owner ? data.owner : 'hunter',
   };
 }
 
@@ -37,8 +31,9 @@ export function endPhase() {
   };
 }
 
-export function endTurn() {
+export function endTurn(data) {
   return {
     type: END_TURN,
+    last: data ? data.last : false,
   };
 }

@@ -8,7 +8,7 @@ import rootReducer from '../reducers';
 import { onDrawEffect } from '../middleware/onDraw';
 import { onDiscard } from '../middleware/onDiscard';
 import { onPlayEffects } from '../middleware/onPlayEffects';
-import { onActivate } from '../middleware/onActivate';
+import { onActionPut } from '../middleware/onActionPut';
 import { onEndTurn } from '../middleware/onEndTurn';
 import { cardEffects } from '../middleware/cardEffects';
 import { onEndPhase } from '../middleware/onEndPhase';
@@ -28,7 +28,7 @@ const configureStore = (initialState?: 0) => {
   middleware.push(onDrawEffect);
   middleware.push(onDiscard);
   middleware.push(onPlayEffects);
-  middleware.push(onActivate);
+  middleware.push(onActionPut);
   middleware.push(onEndTurn);
   middleware.push(cardEffects);
   middleware.push(onEndPhase);

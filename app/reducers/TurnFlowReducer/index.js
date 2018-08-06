@@ -2,25 +2,17 @@ import { fromJS } from 'immutable';
 import {
   END_PHASE,
   END_TURN,
-  GET_NEW_ACTION_QUEUE,
-  ADD_ACTION_TO_QUEUE,
-  ACTIVATE_ACTION_QUEUE,
+  GET_PHASES,
+  PUT_ACTION_IN_PHASE,
 } from './constants';
 
 const initialState = fromJS({
   hunterInitiative: true,
-  actionQueue: [],
-  activeActionNumber: 0,
   turn: 0,
-  huntersPhase: true,
+  activePhase: 0,
+  activeActionSlot: 0,
+  phases: [],
 });
-
-const emptyActionSlot = (id, owner) => ({
-    id,
-    empty: true,
-    owner,
-    action: {},
-  });
 
 export default function turnFlowReducer(state = initialState, action) {
   switch(action.type) {
@@ -31,36 +23,81 @@ export default function turnFlowReducer(state = initialState, action) {
 
       ----
     */
-    case GET_NEW_ACTION_QUEUE:
-      const hunterInitiative = state.get('hunterInitiative');
-      const newActionQueue = [];
-      for(let i = { h: action.hunterActions, m: action.monsterActions, all: 0 }; i.all < action.hunterActions + action.monsterActions;) {
-        if(hunterInitiative && i.h > 0) {
-          newActionQueue.push(emptyActionSlot(i.all, 'hunter'));
-          i.all += 1;
-          i.h -= 1;
+    case GET_PHASES:
+      const newPhases = [
+        {
+          side: 'player',
+          actionSlots: [
+            {
+              owner: 'hunter',
+              empty: true,
+              action: {},
+            }
+          ]
+        },
+        {
+          side: 'enemy',
+          actionSlots: [
+            {
+              owner: 'monster',
+              empty: true,
+              action: {},
+            }
+          ]
+        },
+        {
+          side: 'player',
+          actionSlots: [
+            {
+              owner: 'hunter',
+              empty: true,
+              action: {},
+            },
+            {
+              owner: 'hunter',
+              empty: true,
+              action: {},
+            }
+          ]
+        },
+        {
+          side: 'enemy',
+          actionSlots: [
+            {
+              owner: 'monster',
+              empty: true,
+              action: {},
+            },
+            {
+              owner: 'monster',
+              empty: true,
+              action: {},
+            },
+            {
+              owner: 'monster',
+              empty: true,
+              action: {},
+            }
+          ]
+        },
+        {
+          side: 'player',
+          actionSlots: [
+            {
+              owner: 'hunter',
+              empty: true,
+              action: {},
+            }
+          ]
         }
-        if(i.m > 0) {
-          newActionQueue.push(emptyActionSlot(i.all, 'monster'));
-          i.all += 1;
-          i.m -= 1;
-        }
-        if(!hunterInitiative && i.h > 0) {
-          newActionQueue.push(emptyActionSlot(i.all, 'hunter'));
-          i.all += 1;
-          i.h -= 1;
-        }
-      }
+      ];
       return state
-        .set('actionQueue', fromJS(newActionQueue))
-        .set('activeActionNumber', 0);
-    case ADD_ACTION_TO_QUEUE:
+        .set('phases', fromJS(newPhases));
+    case PUT_ACTION_IN_PHASE:
       return state
-        .setIn(['actionQueue', state.get('activeActionNumber'), 'action'], action.action)
-        .setIn(['actionQueue', state.get('activeActionNumber'), 'empty'], false)
-        .set('activeActionNumber', state.get('activeActionNumber') + 1);
-    case ACTIVATE_ACTION_QUEUE:
-      return state;
+        .setIn(['phases', state.get('activePhase'), 'actionSlots', state.get('activeActionSlot'), 'action'], action.action)
+        .setIn(['phases', state.get('activePhase'), 'actionSlots', state.get('activeActionSlot'), 'empty'], false)
+        .set('activeActionSlot', state.get('activeActionSlot') + 1);
     /*
       ----
 
@@ -69,9 +106,13 @@ export default function turnFlowReducer(state = initialState, action) {
       ----
     */
     case END_PHASE:
-      return state.set('huntersPhase', !state.get('huntersPhase'));
+      return state
+        .set('activeActionSlot', 0)
+        .set('activePhase', state.get('activePhase') + 1);
     case END_TURN:
-      return state.set('turn', state.get('turn') + 1);
+      return state
+        .set('activePhase', 0)
+        .set('turn', state.get('turn') + 1);
     /*
       ----
 

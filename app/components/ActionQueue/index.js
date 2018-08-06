@@ -1,27 +1,24 @@
 import React from 'react';
 import classNames from 'classnames';
+import Phase from "../Phase";
 import styles from './styles.scss';
-import actionStyles from '../Action/styles.scss';
-import Action from "../Action";
+import PhaseStyles from '../Phase/styles.scss';
 
 type Props = {
-  actionQueue: Array
+  phases: Array
 };
 
 export default class ActionQueue extends React.Component<Props> {
 
   render() {
-    const stockAction = {
-      keyWords: [],
-    };
     return (
       <div className={ styles.ActionQueue }>
-        { this.props.actionQueue.map(actionSlot => {
-          const actionClass = classNames({
-            [actionStyles.Monster]: actionSlot.get('owner') === 'monster',
+        { this.props.phases.map((phase, index) => {
+          const phaseClass = classNames(styles.Phase, {
+            [PhaseStyles.EnemySide]: phase.get('side') === 'enemy',
           });
-          return <Action action={ actionSlot.get('empty') ? stockAction : actionSlot.get('action') } className={ actionClass } key={ actionSlot.get('id') } />;
-        })}
+          return <Phase phase={ phase.toObject() } key={ index } className={ phaseClass } />
+        }) }
       </div>
     );
   }

@@ -1,36 +1,37 @@
 import {
-  addActionToQueue,
-  endPhase
+  putActionInPhase,
+  endTurn
 } from "../reducers/TurnFlowReducer/actions";
 
 
 export const onEndPhase = store => next => action => {
   if(action.type === 'END_PHASE') {
-    const state = store.getState();
+    const phases = store.getState().turnFlow.get('phases').toArray();
+    const activePhase = store.getState().turnFlow.get('activePhase');
 
-    if (state.turnFlow.get('huntersPhase')) {
+    if(phases[activePhase].get('side') === 'player') {
 
-      // End of hunter's phase effects
-      // check and fill unfilled actions
-      let activeActionNumber = state.turnFlow.get('activeActionNumber');
-      while(state.turnFlow.getIn(['actionQueue', activeActionNumber]) && state.turnFlow.getIn(['actionQueue', activeActionNumber]).get('owner') === 'hunter') {
-        store.dispatch(addActionToQueue({ action: state.hunter.getIn(['actions', state.hunter.getIn(['actions', 'defaultAction'])]) }));
-        activeActionNumber += 1;
-      }
-
-      next(action);
-
-      // MonsterReducer's phase
-      while(state.turnFlow.getIn(['actionQueue', activeActionNumber]) && state.turnFlow.getIn(['actionQueue', activeActionNumber]).get('owner') === 'monster') {
-        store.dispatch(addActionToQueue({ action: state.monster.getIn(['actions', 'bite']) }));
-        activeActionNumber += 1;
-      }
-      store.dispatch(endPhase());
-
+      // End Player's phase
+      phases[activePhase].get('actionSlots').toArray().map(actionSlot => {
+        if(actionSlot.get('empty')) {
+          store.dispatch(putActionInPhase({ action: store.getState().hunter.getIn(['actions', store.getState().hunter.getIn(['actions', 'defaultAction'])]) }));
+        }
+      });
     } else {
 
-      // End of monster's phase effects
-      // check and fill unfilled actions
+      // End Enemy's phase
+      phases[activePhase].get('actionSlots').toArray().map(actionSlot => {
+        if(actionSlot.get('empty')) {
+          store.dispatch(putActionInPhase({ owner: 'monster', action: store.getState().monster.getIn(['actions', 'bite']) }));
+        }
+      });
+    }
+
+    // Check if end turn
+    if(activePhase === phases.length - 1) {
+      next(action);
+      store.dispatch(endTurn())
+    } else {
       next(action);
     }
   } else {

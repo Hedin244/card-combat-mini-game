@@ -1,7 +1,7 @@
 import Card from '../../models/card';
 import { changeHunterResource } from "../../reducers/HunterReducer/actions";
 import { moveCard } from "../../reducers/CardsReducer/actions";
-import { addActionToQueue } from "../../reducers/TurnFlowReducer/actions";
+import { putActionInPhase } from "../../reducers/TurnFlowReducer/actions";
 import PunchAction from '../actions/punch';
 
 export default function EmptyHandCard() {
@@ -19,6 +19,7 @@ export default function EmptyHandCard() {
       actionPutter: true,
       actions: { punch },
 
+      playValidation: [],
       onPlay: play,
     })
   );
@@ -26,6 +27,6 @@ export default function EmptyHandCard() {
 
 const play = (card) => [
   () => changeHunterResource({ resource: 'stamina', value: -card.costs.stamina }),
-  () => addActionToQueue({ action: card.actions.punch }),
+  () => putActionInPhase({ action: card.actions.punch }),
   () => moveCard({ card , from: 'handCards', to: 'discardedCards' }),
 ];

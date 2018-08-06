@@ -3,7 +3,9 @@ import ActionQueue from '../../components/ActionQueue';
 
 function mapStateToProps(state) {
   return {
-    actionQueue: state.turnFlow.get('actionQueue').toArray(),
+    phases: state.turnFlow.get('phases').toArray(),
+    activePhase: state.turnFlow.get('activePhase'),
+    activeActionSlot: state.turnFlow.get('activeActionSlot'),
   };
 }
 

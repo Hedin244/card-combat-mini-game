@@ -15,13 +15,13 @@ export default class CombatScene extends React.PureComponent {
           <Link to="/">
             <i className="fa fa-arrow-left fa-3x" />
           </Link>
-          <TurnCounter />
         </div>
         <div className={ styles.MainScreen }>
           <HunterInfo />
           <ActionQueue />
           <MonsterInfo />
         </div>
+        <TurnCounter />
         <DeckArea />
       </div>
     );

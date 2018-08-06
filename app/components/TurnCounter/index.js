@@ -1,4 +1,5 @@
 import React from 'react';
+import className from 'classnames';
 import styles from './styles.scss';
 
 type Props = {
@@ -14,17 +15,14 @@ export default class TurnCounter extends React.PureComponent<Props> {
   }
 
   render() {
+    const endButtonClass = className(styles.EndButton, {
+      [styles.EndTurn]: false,
+    });
     return (
       <div className={ styles.Wrapper }>
-        <span className={ styles.Number }>
-          { this.props.turn }
-        </span>
-        <button className={ styles.Button } onClick={ this.props.endPhase }>
-          End Phase
-        </button>
-        <button className={ styles.Button } onClick={ this.props.endTurn }>
-          End Turn
-        </button>
+        <div className={ endButtonClass } onClick={ this.props.endPhase }>
+          end phase
+        </div>
       </div>
     );
   }

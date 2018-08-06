@@ -2,8 +2,8 @@
   opacity: 0.9;
   transition: all 0.1s ease-in-out;
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 80px;
   background-color: #F8ECC2;
   margin: 34px 0;
   border-left: solid 5px #2a2a2a;
@@ -13,20 +13,20 @@
     content: "";
     position: absolute;
     z-index: -1;
-    width: 85px;
-    height: 85px;
-    transform: scaleY(0.6) rotate(-45deg);
+    width: 72px;
+    height: 72px;
+    transform: scaleY(1.2) rotate(-45deg);
     background-color: inherit;
-    left: 14px;
+    left: 11px;
   }
 
   &:before {
-    top: -47px;
+    top: -39px;
     border-top: solid 7px #2a2a2a;
     border-right: solid 7px #2a2a2a;
   }
   &:after {
-    bottom: -45px;
+    bottom: -39px;
     border-bottom: solid 7px #2a2a2a;
     border-left: solid 7px #2a2a2a;
   }
@@ -80,14 +80,5 @@
     span {
       font-size: 12px;
     }
-  }
-}
-
-.Monster {
-  background-color: #FFACC2;
-  margin: 180px -30px 0;
-
-  .ExpandedInfo {
-    background: #FFACC2;
   }
 }
