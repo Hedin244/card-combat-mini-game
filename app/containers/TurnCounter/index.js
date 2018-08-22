@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import TurnCounter from '../../components/TurnCounter';
 import { endTurn, endPhase } from '../../reducers/TurnFlowReducer/actions';
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     turn: state.turnFlow.get('turn'),
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {

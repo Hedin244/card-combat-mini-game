@@ -6,7 +6,8 @@ import styles from './styles.scss';
 type Props = {
   drawDeck: Array,
   discardedCards: Array,
-  handCards: Array
+  handCards: Array,
+  drawCard: () => {}
 };
 
 export default class DeckArea extends React.PureComponent<Props> {

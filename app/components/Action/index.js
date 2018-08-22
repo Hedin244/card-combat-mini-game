@@ -2,7 +2,17 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
-export default class Action extends React.PureComponent {
+type Props = {
+  className?: Array,
+  action: {
+    name?: string,
+    description?: string,
+    keyWords?: Array,
+    type?: Array
+  }
+};
+
+export default class Action extends React.PureComponent<Props> {
 
   render() {
     const {

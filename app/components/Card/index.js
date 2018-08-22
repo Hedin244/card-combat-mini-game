@@ -2,7 +2,11 @@ import React from 'react';
 import styles from './styles.scss';
 
 type Props = {
-  card: Object,
+  card: {
+    costs: {
+      stamina: number
+    }
+  },
   playCard?: () => {}
 };
 

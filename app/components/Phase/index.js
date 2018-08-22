@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import Action from '../Action';
 import styles from './styles.scss';
 
-export default class Phase extends React.PureComponent {
+type Props = {
+  className: Array,
+  phase: {
+    actionSlots: Array
+  }
+};
+
+export default class Phase extends React.PureComponent<Props> {
 
   render() {
     const stockAction = {

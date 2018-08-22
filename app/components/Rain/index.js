@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './styles.scss';
 
-export default class Rain extends React.PureComponent {
+type Props = {
+  drops: number
+};
+
+export default class Rain extends React.PureComponent<Props> {
 
   createRain(numberOfDrops) {
     const rain = [];
