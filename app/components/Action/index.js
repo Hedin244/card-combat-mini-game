@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import styles from './styles.scss';
 
 type Props = {
-  className?: Array,
+  className?: string,
   action: {
     name?: string,
     description?: string,
     keyWords?: Array,
-    type?: Array
+    type?: string
   }
 };
 
@@ -26,6 +26,7 @@ export default class Action extends React.PureComponent<Props> {
 
     const actionClass = classNames(styles.Action, {
       [className]: className,
+      [styles.Filled]: this.props.action.name,
     });
 
     return (

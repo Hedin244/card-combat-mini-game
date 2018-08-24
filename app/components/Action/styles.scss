@@ -1,38 +1,17 @@
 .Action {
-  opacity: 0.9;
-  transition: all 0.1s ease-in-out;
-  position: relative;
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
+  transition-delay: 0.2s;
   width: 100px;
-  height: 80px;
-  background-color: #F8ECC2;
-  margin: 34px 0;
-  border-left: solid 5px #2a2a2a;
-  border-right: solid 5px #2a2a2a;
-
-  &:before, &:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 72px;
-    height: 72px;
-    transform: scaleY(1.2) rotate(-45deg);
-    background-color: inherit;
-    left: 11px;
-  }
-
-  &:before {
-    top: -39px;
-    border-top: solid 7px #2a2a2a;
-    border-right: solid 7px #2a2a2a;
-  }
-  &:after {
-    bottom: -39px;
-    border-bottom: solid 7px #2a2a2a;
-    border-left: solid 7px #2a2a2a;
-  }
+  height: 160px;
+  background: #F8ECC2;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  color: black;
 
   &:hover {
     transform: scale(1.7);
+    z-index: 2;
+    opacity: 1;
 
     .ExpandedInfo {
       opacity: 0.9;
@@ -40,25 +19,17 @@
   }
 
   .Name {
-    z-index: 2;
-    color: black;
     text-transform: uppercase;
     font-weight: 700;
     text-align: center;
-    margin: 5px auto;
+    margin: 35px auto auto;
     max-width: 90%;
     font-size: 12px;
   }
 
   .Description {
-    z-index: 2;
-    color: black;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-align: center;
-    margin: 5px auto;
-    max-width: 90%;
     font-size: 12px;
+    margin: 3px;
   }
 
   .ExpandedInfo {
@@ -81,4 +52,20 @@
       font-size: 12px;
     }
   }
+}
+
+.Hunter {
+  background: #bfffc6;
+}
+
+.Monster {
+  background: #ffbfbf;
+}
+
+.Active {
+  background: #bfc1ff;
+}
+
+.Filled {
+  opacity: 0.9;
 }

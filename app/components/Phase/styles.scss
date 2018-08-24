@@ -1,7 +1,28 @@
 .Phase {
+  position: relative;
   display: flex;
+  height: 150px;
+
+  &:before {
+    position: absolute;
+    left: -40px;
+    top: 5px;
+    text-transform: uppercase;
+    color: #bfc1ff;
+  }
 }
 
 .EnemySide {
   margin: 150px -40px 0;
+
+  &:before {
+    top: auto;
+    bottom: -5px;
+  }
+}
+
+.Active {
+  &:before {
+    content: "active";
+  }
 }
