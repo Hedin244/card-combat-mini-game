@@ -13,8 +13,9 @@ const initialState = fromJS({
   resources: {
 
     // Fields spend on cards
-    stamina: 10,
-    focus: 10,
+    stamina: 5,
+    focus: 8,
+    gist: 6,
 
     // Defence
     block: 0,
@@ -37,8 +38,6 @@ const initialState = fromJS({
 
     // Other Attributes
     actions: 3,
-    startingStamina: 10,
-    startingFocus: 10,
   },
   actions: {
     defaultAction: 'rest',
